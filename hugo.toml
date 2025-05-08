@@ -1,0 +1,7 @@
+baseURL = 'https://openbsdjourney.paedubucher.ch'
+languageCode = 'en-us'
+title = 'OpenBSD Journey'
+
+[module]
+[[module.imports]]
+path = 'github.com/hanwenguo/hugo-theme-nostyleplease'

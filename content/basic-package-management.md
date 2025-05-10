@@ -7,7 +7,7 @@ Having installed OpenBSD, I'd like to work with my system. Even though the base 
 
 Fortunately, OpenBSD comes with a package system to install additional software provided by the community. I won't get into the details of this system but rather describe its most basic usage.
 
-Entering `pkg_` in the shell and pressing the tab key reveals a list of programs related to package management. Running the `whatis` command for each of those shows the following descriptions (in alphabetic order):
+Typing `pkg_` into the shell and pressing the tab key reveals a list of programs related to package management. Running the `whatis` command for each of those shows the following descriptions (in alphabetic order):
 
 - `pkg_add(1)`: install or update software packages
 - `pkg_check(8)`: check consistency of installed packages
@@ -17,9 +17,9 @@ Entering `pkg_` in the shell and pressing the tab key reveals a list of programs
 - `pkg_mklocatedb(1)`: create a locate databaes for packages
 - `pkg_sign(1)`: sign a binary package for distribution
 
-Notice that only `pkg_check` is part of section 8 (system maintenance and operation commands), while the other `pkg_`-prefixed programs are part of section 1 (general commands).
+Notice that only `pkg_check` is part of section 8 (system maintenance and operation commands), while the other `pkg_`-prefixed programs are part of section 1 (general commands) of the manpage library.
 
-I won't bother with `pg_create(1)` and `pkg_sign(1)` in this post, because they are intended for package maintainers, not mere users. The `pkg_mklocatedb(1)` command will be quickly discussed further below.
+I won't bother with `pkg_create(1)` and `pkg_sign(1)` in this post, because they are intended for package maintainers, not mere users. The `pkg_mklocatedb(1)` command will be discussed further below.
 
 For the moment, I'll focus on the following use cases, which are relevant on a daily basis for me:
 
@@ -28,7 +28,7 @@ For the moment, I'll focus on the following use cases, which are relevant on a d
 3. remove packages, and
 4. check consistency of installed packages.
 
-I'll use the `elixir` package as an example, which provides the `iex` program (among others) and depends on the `erlang` package. Commands to be run with super-user rights are prefixed with `#` (even though I prefer `doas` for that purpose); commands that don't require elevated privileges are prefixed with `$`.
+I'll use the `elixir` package as an example, which provides the `iex` program (among others) and depends on the `erlang` package. Commands to be run with super-user rights are prefixed with `#` (even though I use `doas` for that purpose rather than a `root` shell); commands that don't require elevated privileges are prefixed with `$`.
 
 ## Finding Information: `pkg_info`
 
@@ -54,7 +54,7 @@ Figure out which _installed_ package provides a file:
 
 To figure out which _uninstalled_ package provides a file, see the section about `pkg_locatedb` and `pkg_mklocatedb` further below.
 
-Find a package by providing a substring of their name:
+Find a package by providing a substring of its name:
 
     $ pkg_info -Q elix
 
@@ -100,7 +100,7 @@ Perform a sanity check on the installed packages (files, dependencies):
 
 Unfortunately, the `pkg_info -E FILE` command, which shows what package provides a given file, only works for packages that are already installed. However, it would be more useful to figure out which package provides a file that is not already on my system.
 
-For example, I'd like to use the `ss` utility as a port scanner, which is not provided by the base system. Fortunately, in the `pkg_info(1)` manpage, the section about the `-E` option points towards the `pkglocatedb` package:
+For example, I'd like to use the `escript` binary to run Erlang scripts, which is not provided by the base system. Fortunately, in the `pkg_info(1)` manpage, the section about the `-E` option points towards the `pkglocatedb` package:
 
     # pkg_add pkglocatedb
 
@@ -122,15 +122,15 @@ Once built, the database can be queried using the `pkg_locate` command, which su
 
 By default, the `pkg_locate` command queries the entire file path:
 
-    $ pkg_locate iex
+    $ pkg_locate escript
 
 To only query the last path component, i.e. the file, use the `-b` option:
 
-    $ pkg_locate -b iex
+    $ pkg_locate -b escript
 
 However, this finds every package/path combination in which `iex` is _part_ of the file name. For exact matches, filter the output using `grep`:
 
-    $ pkg_locate -b iex | grep iex$
+    $ pkg_locate -b escript | grep '/escript$'
 
 ## Conclusion
 

@@ -2,7 +2,6 @@
 title = "posts"
 
 [entries.post_list]
-limit = 5
 show_more = true
 show_more_text = "…"
 

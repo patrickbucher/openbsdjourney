@@ -1,6 +1,6 @@
 +++
 date = '2025-11-22T09:35:26+01:00'
-title = 'GTK2 Font Sizes'
+title = 'GTK 2 Font Sizes'
 +++
 
 I installed Leafpad, which is based on GTK 2, in order to try out some different fonts. Ironically, the application was rendered using a comically sized font.

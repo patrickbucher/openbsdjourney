@@ -18,4 +18,4 @@ Two switch devices automatically upon connection/disconnection of the USB device
 
 The `-f` flag adds a device to the output devices, `-F` removes it; see `sndiod(8)`.
 
-I got this information from the [OpenBSD FAQ](https://www.openbsd.org/faq/faq13.html#default).
+I got this information from the [OpenBSD FAQ](https://www.openbsd.org/faq/faq13.html#usbaudio).

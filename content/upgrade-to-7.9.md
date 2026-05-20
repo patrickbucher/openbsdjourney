@@ -51,14 +51,14 @@ And here we are again:
      patrick@openbsd.home
      OS: OpenBSD 
      Kernel: 7.9 GENERIC.MP#449 amd64
-     Uptime: 20m
+     Uptime: 0m
      Packages: 274
      Shell: bash 5.3.9
-     Resolution: 2560x2520
+     Resolution: 1920x1080
      WM: dwm
      GTK Theme: Adwaita [GTK3]
      Font: DejaVu Sans 16px
      Disk: 19.8G / 394.5G (5%)
      CPU: Intel Core i7-7500U
      GPU: Mesa Intel(R) HD Graphics 620 (KBL GT2)
-     RAM: 207MiB / 16130MiB
+     RAM: 126MiB / 16130MiB
